@@ -1,0 +1,32 @@
+using System;
+using static System.Console;
+using System.Globalization;
+class MoveEstimator
+{
+   static void Main()
+   {
+     const int BASE_MOVE_RATE = 200;
+     const int HOURLY_MOVE_RATE = 150;
+     const int BASE_MILE_RATE = 2;     
+     string numberHours;
+     double hours;
+     string numberMiles;
+     double miles;
+     double totalHoursRate;
+     double totalMiles;
+     double movingFee;
+     Write("Enter the number of hours for a job: ");
+     numberHours = ReadLine();
+     hours = Convert.ToDouble(numberHours);
+     Write("Enter the number of miles involved in the move: ");
+     numberMiles = ReadLine();
+     miles = Convert.ToDouble(numberMiles);
+     totalHoursRate = BASE_MOVE_RATE + (hours * HOURLY_MOVE_RATE);
+     totalMiles = miles * BASE_MILE_RATE;
+     movingFee = totalHoursRate + totalMiles;
+     
+     WriteLine("For a move taking {0} hours and going {1} miles " +
+      "the estimate is {2}", numberHours, numberMiles, 
+      movingFee.ToString("C",CultureInfo.GetCultureInfo("en-US")));    
+   }
+}
