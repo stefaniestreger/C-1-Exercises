@@ -1,0 +1,15 @@
+using System;
+using static System.Console;
+class HoursAndMinutes
+{
+   static void Main()
+   {
+      int minutes = 197;
+      int hoursWorked = minutes / 60;
+      int minutesWorked = minutes % 60;
+    
+      WriteLine("{0} minutes is {1} hours and {2} minutes",
+      minutes, hoursWorked, minutesWorked);
+
+   }
+}
