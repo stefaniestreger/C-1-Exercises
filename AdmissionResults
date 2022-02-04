@@ -1,0 +1,22 @@
+using System;
+using static System.Console;
+class Admission
+{
+   static void Main()
+   {
+     string inputString; 
+     double gpa, admission; // declare variables with data types
+
+      Write("Enter your high school GPA: ");
+      inputString = ReadLine();
+      gpa = Convert.ToDouble(inputString); // User enters GPA, save to variable
+      Write("Enter your admission test score: ");
+      inputString = ReadLine();
+      admission = Convert.ToDouble(inputString); // User enters admission score, save to variable
+
+     if ((gpa >= 3.0 && admission >= 60) || (gpa < 3.0 && admission >=80))
+        WriteLine("Accept"); // Show accept when either set of conditions is met
+     else
+        WriteLine("Reject"); // Show reject for all other conditions
+   }
+}
