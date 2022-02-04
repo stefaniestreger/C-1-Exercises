@@ -1,0 +1,19 @@
+using System;
+using static System.Console;
+class CheckMonth
+{
+   static void Main()
+   {
+      string inputString;
+      double birthMonth; //  store variable for user month
+
+      Write("Enter your birth month as a number: ");
+      inputString = ReadLine();
+      birthMonth = Convert.ToDouble(inputString); // user enter their birth month (number)
+            
+      if (birthMonth > 12 || birthMonth < 1)
+        Write("Invalid month"); // if value > 12 or < 1, display "invalid month"
+      else // else display "{month entered} is a valid month"
+        Write($"{birthMonth} is a valid month."); 
+   }
+}
