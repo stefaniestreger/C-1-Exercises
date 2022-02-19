@@ -1,0 +1,168 @@
+using System;
+using static System.Console;
+class CustomerBill
+{
+    static void Main()
+    {
+        string customerName;
+        string customerPlan;
+        double customerMinutes;
+        string input;
+        string planOne = "1";
+        string planTwo = "2";
+        string planThree = "3";
+        double planOneBase = 29.99;
+        double planOneMins = 400;
+        double planOneOverage = 0.35;
+        double planTwoBase = 49.99;
+        double planTwoMins = 800;
+        double planTwoOverage = 0.30;
+        double planThreeBase = 59.99;
+
+        Write("Enter the customer's name: ");
+        input = ReadLine();
+        customerName = input;
+        while (customerName == "" || customerName.Length < 2)
+        {
+            WriteLine("Customer Name cannot be empty or contain less than 2 characters.");
+            Write("Enter the customer's name: ");
+            input = ReadLine();
+            customerName = input;
+        }
+
+        Write("Enter a plan: ");
+        input = ReadLine();
+        customerPlan = input;
+        while (customerPlan != planOne && customerPlan != planTwo && customerPlan != planThree) 
+        {
+            WriteLine("Must be a valid plan name");
+            Write("Enter a plan: ");
+            input = ReadLine();
+            customerPlan = input;
+        }
+
+        Write("Enter the number minutes used: ");
+        input = ReadLine();
+        customerMinutes = Convert.ToDouble(input);
+        while (customerMinutes < 0)
+        {
+            WriteLine("Minutes used cannot be less than 0");
+            Write("Enter the number minutes used: ");
+            input = ReadLine();
+            customerMinutes = Convert.ToDouble(input);
+        }
+
+        WriteLine("Bill Name: {0}", customerName);
+        WriteLine("Plan: Plan {0}", customerPlan);
+
+        if (customerPlan == planOne)
+        {
+            WriteLine("Plan Base Charge: ${0}", (decimal) planOneBase);
+            WriteLine("Plan Base Minutes: {0}", planOneMins);
+            if (customerMinutes <= planOneMins)
+            {
+                WriteLine("Overage Minutes: 0");
+                WriteLine("Price Per Minute Overage: ${0}", (decimal) planOneOverage);
+                WriteLine("Overage Charge: $0.00");
+                WriteLine("    ");
+                WriteLine("Total Bill: ${0}", (decimal) planOneBase);
+            }
+            else
+            {
+                double overage = (customerMinutes - planOneMins);
+                double overageCharge = (overage * planOneOverage);
+                double totalBill = (planOneBase + overageCharge);
+                WriteLine("Overage Minutes: {0}", overage);
+                WriteLine("Price Per Minute Overage: ${0}", (decimal) planOneOverage);
+                WriteLine("Overage Charge: ${0}", (decimal) overageCharge);
+                WriteLine("    ");
+                WriteLine("Total Bill: ${0}", (decimal) totalBill);
+                WriteLine("Cost Savings: ");
+                if (customerMinutes > planOneMins && customerMinutes <= planTwoMins)
+                {
+                    double planTwoSavings = (totalBill - planTwoBase);
+                    double planThreeSavings = (totalBill - planThreeBase);
+                    WriteLine("If you switched to Plan 2, you would have saved ${0}", (decimal) planTwoSavings);
+                    WriteLine("If you switched to Plan 3, you would have saved ${0}", (decimal) planThreeSavings);
+                }
+                else
+                {
+                    double overagePlanTwo = ((customerMinutes - planTwoMins) * planTwoOverage);
+                    double totalBillTwo = (planTwoBase + overagePlanTwo);
+                    double planTwoSavings = (totalBill - totalBillTwo);
+                    double planThreeSavings = (totalBill - planThreeBase);
+                    WriteLine("If you switched to Plan 2, you would have saved ${0}", (decimal) planTwoSavings);
+                    WriteLine("If you switched to Plan 3, you would have saved ${0}", (decimal) planThreeSavings);
+                }
+            }
+        }
+
+        if (customerPlan == planTwo)
+        {
+            WriteLine("Plan Base Charge: ${0}", (decimal) planTwoBase);
+            WriteLine("Plan Base Minutes: {0}", planTwoMins);
+            if (customerMinutes <= planOneMins)
+            {
+                double planOneSavings = (planTwoBase - planOneBase);
+                WriteLine("Overage Minutes: 0");
+                WriteLine("Price Per Minute Overage: ${0}", (decimal) planTwoOverage);
+                WriteLine("Overage Charge: $0.00");
+                WriteLine("    ");
+                WriteLine("Total Bill: ${0}", (decimal) planTwoBase);
+                WriteLine("Cost Savings:");
+                WriteLine("If you switched to Plan 1, you would have saved ${0}", (decimal) planOneSavings);
+            }
+            else if (customerMinutes > planOneMins && customerMinutes <= planTwoMins)
+            {
+                double planThreeSavings = (planThreeBase - planTwoBase);
+                WriteLine("Overage Minutes: 0");
+                WriteLine("Price Per Minute Overage: ${0}", (decimal) planTwoOverage);
+                WriteLine("Overage Charge: $0.00");
+                WriteLine("    ");
+                WriteLine("Total Bill: ${0}", (decimal) planTwoBase);
+                WriteLine("Cost Savings:");
+                WriteLine("If you switched to Plan 3, you would have saved ${0}", (decimal) planThreeSavings);
+            }
+            else
+            {
+                double overage = (customerMinutes - planTwoMins);
+                double overageCharge = (overage * planTwoOverage);
+                double totalBill = (planTwoBase + overageCharge);
+                double planThreeSavings = (totalBill - planThreeBase);
+                WriteLine("Overage Minutes: {0}", overage);
+                WriteLine("Price Per Minute Overage: ${0}", (decimal) planTwoOverage);
+                WriteLine("Overage Charge: ${0}", (decimal) overageCharge);
+                WriteLine("    ");
+                WriteLine("Total Bill: ${0}", (decimal) totalBill);
+                WriteLine("Cost Savings: ");
+                WriteLine("If you switched to Plan 3, you would have saved ${0}", (decimal) planThreeSavings);
+            }
+        }
+        if (customerPlan == planThree)
+        {
+            WriteLine("Plan Base Charge: ${0}", (decimal) planThreeBase);
+            WriteLine("Plan Base Minutes: Unlimited");
+            if (customerMinutes <= planOneMins || (customerMinutes > planOneMins && customerMinutes <= planTwoMins)) 
+            { 
+                double planOneSavings = (planThreeBase - planOneBase);
+                double planTwoSavings = (planThreeBase - planTwoBase);
+                WriteLine("Overage Minutes: 0");
+                WriteLine("Price Per Minute Overage: $0.00");
+                WriteLine("Overage Charge: $0.00");
+                WriteLine("    ");
+                WriteLine("Total Bill: ${0}", (decimal) planThreeBase);
+                WriteLine("Cost Savings:");
+                WriteLine("If you switched to plan 1, you would have saved ${0}", (decimal) planOneSavings); 
+                WriteLine("If you switched to Plan 2, you would have saved ${0}", (decimal) planTwoSavings);
+            }            
+            else
+            {
+                WriteLine("Overage Minutes: 0");
+                WriteLine("Price Per Minute Overage: $0.00");
+                WriteLine("Overage Charge: $0.00");
+                WriteLine("    ");
+                WriteLine("Total Bill: ${0}", (decimal) planThreeBase);
+            }
+        }
+    }
+}
