@@ -1,0 +1,21 @@
+using static System.Console;
+class CheckZips
+{
+   static void Main()
+   {
+      string[] zips = {"12789", "54012", "54481", "54982", "60007",
+         "60103", "60187", "60188", "71244", "90210"};
+      string userChoice;
+      bool matchZip = false;
+      Write("Enter a zip code: ");
+      userChoice = ReadLine();
+      for(int x = 0; x < zips.Length; ++x) {
+        if(userChoice == zips[x])
+        matchZip = true;
+      }
+      if(matchZip)
+        WriteLine("Delivery to {0} ok", userChoice);
+      else
+        WriteLine("Sorry - no delivery to {0}", userChoice);
+   }
+}
