@@ -1,0 +1,44 @@
+using System;
+using static System.Console;
+class ArrayDemo
+{
+    static void Main()
+    {
+        int[] nums = { 7, 6, 3, 2, 10, 8, 4, 5, 9, 1 };
+        int userOption;
+        int positionChoice;
+        WriteLine("(1) View the list in order from first to last");
+        WriteLine("(2) View the list in order from last to first");
+        WriteLine("(3) Choose a specific position to view");
+        WriteLine("(4) Quit the application");
+        Write("Enter an option: ");
+        userOption = Convert.ToInt32(ReadLine());
+        while (userOption != 4)
+        {
+            if (userOption == 1)
+            {
+              foreach(int i in nums)
+              Write("{0}  ", i);
+            }
+            if (userOption == 2) 
+            {
+                Array.Reverse(nums);
+                Write(String.Join(" ", nums));
+            }
+            if (userOption == 3)
+            {
+                Write("Enter a number through {0}: ", nums.Length);
+                positionChoice = Convert.ToInt32(ReadLine());
+                Write(nums[positionChoice]);
+            }
+            WriteLine("            ");
+            WriteLine("Option 1: View list in order from first to last");
+            WriteLine("Option 2: View list in order from last to first");
+            WriteLine("Option 3: Choose a specific position to view: ");
+            WriteLine("Option 4: Quit");
+            Write("Please choose an option: ");
+            userOption = Convert.ToInt32(ReadLine());
+        }
+        WriteLine("Goodbye!");
+    }
+}
