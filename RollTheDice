@@ -8,55 +8,59 @@ class DiceGame
         int totalPlusPoints;
         int totalGameScore = 0;
 
-        while (true)
-        {
-            Write("Do you want to roll or quit: ");
-            string userInput = ReadLine();
+        Write("Do you want to roll or quit: ");
+        string userInput = ReadLine();
 
-            while (userInput != "quit")
+        while (userInput != "quit")
             {
-                if (userInput == "roll")
+            if (userInput == "roll")
+            {
+                numbers = RollDice();
+
+                totalPlusPoints = CalculateScore(numbers);
+
+                Write("The dice roll is: ");
+
+                foreach (int item in numbers)
                 {
-                    numbers = RollDice();
-
-                    totalPlusPoints = CalculateScore(numbers);
-
-                    Write("The dice roll is: ");
-
-                    foreach (int item in numbers)
-                    {
-                        Write("{0}, ", item.ToString());
-                    }
-                    WriteLine(" ");
-
-                    if (totalPlusPoints < 25)
-                    {
-                        WriteLine("No bonus.");
-                        totalGameScore += totalPlusPoints;
-                    }
-                    if (totalPlusPoints >= 25 && totalPlusPoints < 50)
-                    {
-                        WriteLine("You rolled a double!");
-                        totalGameScore += totalPlusPoints;
-                    }
-                    if (totalPlusPoints >= 50)
-                    {
-                        WriteLine("You rolled a triple!");
-                        totalGameScore += totalPlusPoints;
-                    }
-
-                    WriteLine(" ");
-                    WriteLine("Your total roll is {0}", totalPlusPoints);
-                    WriteLine(" ");
-                    WriteLine("Your total score is {0}", totalGameScore);
-                    WriteLine(" ");
-                    Write("Do you want to roll or quit: ");
-                    userInput = ReadLine();
+                    Write("{0}, ", item.ToString());
                 }
+                WriteLine(" ");
+
+                if (totalPlusPoints < 25)
+                {
+                    WriteLine("No bonus.");
+                    totalGameScore += totalPlusPoints;
+                }
+                if (totalPlusPoints >= 25 && totalPlusPoints < 50)
+                {
+                   WriteLine("You rolled a double!");
+                    totalGameScore += totalPlusPoints;
+                }
+                if (totalPlusPoints >= 50)
+                {
+                    WriteLine("You rolled a triple!");
+                    totalGameScore += totalPlusPoints;
+                }
+
+                WriteLine(" ");
+                WriteLine("Your total roll is {0}", totalPlusPoints);
+                WriteLine(" ");
+                WriteLine("Your total score is {0}", totalGameScore);
+                WriteLine(" ");
+                Write("Do you want to roll or quit: ");
+                userInput = ReadLine();
+                }
+
+            if (userInput == "ROLL" || userInput == "QUIT")
+            {
+                WriteLine("Invalid entry. Choice was not formatted properly");
+                WriteLine(" ");
+                Write("Do you want to roll or quit: ");
+                userInput = ReadLine();
             }
-            WriteLine("Thanks for playing.");
-            break;
         }
+         WriteLine("Thanks for playing.");
     }
 
     private static int[] RollDice()
