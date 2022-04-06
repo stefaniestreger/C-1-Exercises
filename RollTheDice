@@ -5,7 +5,6 @@ class DiceGame
     static public void Main(string[] args)
     {
         int[] numbers = new int[3];
-        //int totalDiceRoll = 0;
         int totalPlusPoints;
         int totalGameScore = 0;
 
