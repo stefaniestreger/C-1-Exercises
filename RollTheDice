@@ -5,7 +5,7 @@ class DiceGame
     static public void Main(string[] args)
     {
         int[] numbers = new int[3];
-        int totalDiceRoll = 0;
+        //int totalDiceRoll = 0;
         int totalPlusPoints;
         int totalGameScore = 0;
 
@@ -18,10 +18,9 @@ class DiceGame
             {
                 if (userInput == "roll")
                 {
-                    numbers = RollDice(); // cannot implicitly convert type 'void' to 'int[]'
+                    numbers = RollDice();
 
-                    totalPlusPoints = CalculateScore(numbers); // cannot implicitly convert type 'void' to 'int[]'
-                    totalDiceRoll += numbers; // operator '+=' cannot be applied to operands of type 'int' and 'int[]'
+                    totalPlusPoints = CalculateScore(numbers);
 
                     Write("The dice roll is: ");
 
@@ -48,7 +47,7 @@ class DiceGame
                     }
 
                     WriteLine(" ");
-                    WriteLine("Your total roll is {0}", totalDiceRoll);
+                    WriteLine("Your total roll is {0}", totalPlusPoints);
                     WriteLine(" ");
                     WriteLine("Your total score is {0}", totalGameScore);
                     WriteLine(" ");
@@ -61,7 +60,7 @@ class DiceGame
         }
     }
 
-    private static void RollDice()
+    private static int[] RollDice()
     {
         int min = 1;
         int max = 7;
@@ -72,10 +71,10 @@ class DiceGame
         numbers[1] = ranNumberGenerator.Next(min, max);
         numbers[2] = ranNumberGenerator.Next(min, max);
 
-        return;
+        return numbers;
     }
 
-    private static void CalculateScore(int[] array)
+    private static int CalculateScore(int[] array)
     {
         int doubleBonus = 25;
         int tripleBonus = 50;
@@ -96,6 +95,6 @@ class DiceGame
             arraySum += tripleBonus;
         }
 
-        return;
+        return arraySum;
     }
 }
