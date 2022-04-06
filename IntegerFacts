@@ -37,18 +37,10 @@ class IntegerFacts
        if (i == 999) {
          break;
        }
-      //  if (i > 0) {
          array[placeholder] = i;
-         placeholder++; //this ignores 0s in count (correct), but doesn't limit to 10 (incorrect)
-      //  }
-      // placeholder++; this doesn't ignore 0s (incorrect) but limits to 10 (correct)
+         placeholder++;
      }
-      //       // THIS NEEDS TO BE WORKED, BUT WILL DO IT LAST
-      // if (!int.TryParse(input, out input)) {
-      //    Write("Enter an integer: ");
-      //    input = ReadLine();
-      //    i = Convert.ToInt32(input);
-      //  }
+
     return placeholder;
    }
    
