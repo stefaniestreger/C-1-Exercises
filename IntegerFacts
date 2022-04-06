@@ -1,0 +1,85 @@
+using System;
+using static System.Console;
+class IntegerFacts
+{
+   static void Main()
+   {
+     int[] numbers = new int[10];
+     int highest, lowest, newSum;
+     double newAvg;
+
+     int countArray = FillArray(numbers); 
+     Statistics(numbers, countArray, out highest, out lowest, out newSum, out newAvg);
+
+     WriteLine("The array has {0} values", countArray);
+     WriteLine("The highest value is {0}", highest);
+     WriteLine("The lowest value is {0}", lowest);
+     WriteLine("The sum of the values is {0}", newSum);
+     WriteLine("The average is {0}", newAvg);
+   }
+   
+   public static int FillArray(int[] array)
+   {  
+     string input;
+     int i;
+     int placeholder = 0;
+
+     while (true) {
+       
+       if (placeholder >= 10) {
+         break;
+       }
+       
+       Write("Enter an integer: ");
+       input = ReadLine();
+       i = Convert.ToInt32(input);
+       
+       if (i == 999) {
+         break;
+       }
+      //  if (i > 0) {
+         array[placeholder] = i;
+         placeholder++; //this ignores 0s in count (correct), but doesn't limit to 10 (incorrect)
+      //  }
+      // placeholder++; this doesn't ignore 0s (incorrect) but limits to 10 (correct)
+     }
+      //       // THIS NEEDS TO BE WORKED, BUT WILL DO IT LAST
+      // if (!int.TryParse(input, out input)) {
+      //    Write("Enter an integer: ");
+      //    input = ReadLine();
+      //    i = Convert.ToInt32(input);
+      //  }
+    return placeholder;
+   }
+   
+   public static void Statistics(int[] array, int els, out int high, out int low, out int sum, out double avg)
+   {
+    int smallest = array[0];
+    int largest = array[0];
+    int total = 0;
+
+    for (int i = 0; i < els; i++) {
+      if (largest < array[i]) {
+        largest = array[i];
+      }
+    }
+
+    
+    for (int i = 0; i < els; i++) { // lowest not consistently right
+      if (smallest > array[i]) {
+        smallest = array[i];
+      }
+    }
+
+    low = smallest;
+    high = largest;
+
+    foreach (int item in array) {
+      total += item;
+    }
+    sum = total;
+    
+    avg = (float)sum / els;
+
+   }
+}
